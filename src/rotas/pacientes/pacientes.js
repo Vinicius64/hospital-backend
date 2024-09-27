@@ -74,7 +74,7 @@ router.get('/pacientes', requireAuth, isAdmin, async (req, res) => {
     }
 });
 
-router.get('/pacientes/:id', requireAuth, isAdmin, async (req, res) => {
+router.get('/pacientes/:id', requireAuth, async (req, res) => {
     const { id } = req.params;
     try {
         if(!id) throw new Error("ID não informado");
