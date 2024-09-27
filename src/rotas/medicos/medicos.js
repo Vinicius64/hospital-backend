@@ -69,7 +69,7 @@ router.get('/medicos/:id', requireAuth, async (req, res) => {
         if(!id) throw new Error('ID não informado');
         const medico = await prisma.medico.findUnique({
             where: { id: id },
-            select: { id: true, nome: true, CRI: true, sexo: true, dataNascimento: true, especialidade: true }
+            select: { id: true, nome: true, CRI: true,  email: true, sexo: true, dataNascimento: true, especialidade: true }
         });
         res.json(medico);
     } catch (error) {
