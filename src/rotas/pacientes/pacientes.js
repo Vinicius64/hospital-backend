@@ -78,11 +78,14 @@ router.get('/pacientes/:id', requireAuth, async (req, res) => {
     const { id } = req.params;
     try {
         if(!id) throw new Error("ID não informado");
-        const paciente = await prisma.paciente.findUnique({
+        const buscaPaciente = await prisma.paciente.findUnique({
             where: { id: id },
-            select: { id: true, nome: true, CPF: true, sexo: true, dataNascimento: true, estadoCivil: true, email:true }
+            select: { id: true, nome: true, CPF: true, sexo: true, dataNascimento: true, estadoCivil: true, email:true, endereco:true,imagem: true }
         });
-        res.json(paciente);
+        
+        console.log("endereço do paciente: ",buscaPaciente)
+
+        res.json(buscaPaciente);
     } catch (error) {
         res.status(400).json({ message: 'Erro ao buscar paciente', error: error.message });
     }

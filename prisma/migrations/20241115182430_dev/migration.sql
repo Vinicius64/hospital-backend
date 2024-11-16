@@ -65,6 +65,44 @@ CREATE TABLE "loglogin" (
     "role" TEXT NOT NULL
 );
 
+-- CreateTable
+CREATE TABLE "Endereco_paciente" (
+    "id" TEXT NOT NULL,
+    "idPaciente" TEXT NOT NULL,
+    "cep" TEXT NOT NULL,
+    "bairro" TEXT NOT NULL,
+    "logradouro" TEXT NOT NULL,
+    "estado" TEXT NOT NULL,
+    CONSTRAINT "Endereco_paciente_idPaciente_fkey" FOREIGN KEY ("idPaciente") REFERENCES "Paciente" ("id") ON DELETE RESTRICT ON UPDATE CASCADE
+);
+
+-- CreateTable
+CREATE TABLE "Endereco_medico" (
+    "id" TEXT NOT NULL,
+    "idMedico" TEXT NOT NULL,
+    "cep" TEXT NOT NULL,
+    "bairro" TEXT NOT NULL,
+    "logradouro" TEXT NOT NULL,
+    "estado" TEXT NOT NULL,
+    CONSTRAINT "Endereco_medico_idMedico_fkey" FOREIGN KEY ("idMedico") REFERENCES "Medico" ("id") ON DELETE RESTRICT ON UPDATE CASCADE
+);
+
+-- CreateTable
+CREATE TABLE "Imagem_paciente" (
+    "id" TEXT NOT NULL,
+    "idPaciente" TEXT NOT NULL,
+    "url" TEXT NOT NULL,
+    CONSTRAINT "Imagem_paciente_idPaciente_fkey" FOREIGN KEY ("idPaciente") REFERENCES "Paciente" ("id") ON DELETE RESTRICT ON UPDATE CASCADE
+);
+
+-- CreateTable
+CREATE TABLE "Imagem_medico" (
+    "id" TEXT NOT NULL,
+    "idMedico" TEXT NOT NULL,
+    "url" TEXT NOT NULL,
+    CONSTRAINT "Imagem_medico_idMedico_fkey" FOREIGN KEY ("idMedico") REFERENCES "Medico" ("id") ON DELETE RESTRICT ON UPDATE CASCADE
+);
+
 -- CreateIndex
 CREATE UNIQUE INDEX "Paciente_id_key" ON "Paciente"("id");
 
@@ -97,3 +135,27 @@ CREATE UNIQUE INDEX "Administrador_email_key" ON "Administrador"("email");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "loglogin_id_key" ON "loglogin"("id");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "Endereco_paciente_id_key" ON "Endereco_paciente"("id");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "Endereco_paciente_idPaciente_key" ON "Endereco_paciente"("idPaciente");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "Endereco_medico_id_key" ON "Endereco_medico"("id");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "Endereco_medico_idMedico_key" ON "Endereco_medico"("idMedico");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "Imagem_paciente_id_key" ON "Imagem_paciente"("id");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "Imagem_paciente_idPaciente_key" ON "Imagem_paciente"("idPaciente");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "Imagem_medico_id_key" ON "Imagem_medico"("id");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "Imagem_medico_idMedico_key" ON "Imagem_medico"("idMedico");

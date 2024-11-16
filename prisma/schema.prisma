@@ -24,6 +24,8 @@ model Paciente {
   senha          String
   deleted        Boolean  @default(false)
   consultas      Consulta[]
+  endereco       Endereco_paciente?
+  imagem         Imagem_paciente?
   exames         Exame[]
   role           String   @default("paciente") // Novo campo para diferenciar os níveis de usuário
 }
@@ -39,6 +41,8 @@ model Medico {
   senha          String
   deleted        Boolean  @default(false)
   consultas      Consulta[]
+  endereco       Endereco_medico?
+  imagem         Imagem_medico?
   exames         Exame[]
   role           String   @default("medico") // Novo campo para diferenciar os níveis de usuário
 }
@@ -76,4 +80,38 @@ model loglogin {
   nome          String
   dataHorario   String 
   role          String  
+}
+
+model Endereco_paciente {
+  id            String  @unique
+  idPaciente    String  @unique
+  cep           String
+  bairro        String
+  logradouro    String
+  estado        String
+  paciente      Paciente? @relation(fields: [idPaciente], references: [id])
+}
+
+model Endereco_medico {
+  id            String  @unique
+  idMedico      String  @unique
+  cep           String
+  bairro        String
+  logradouro    String
+  estado        String
+  medico        Medico   @relation(fields: [idMedico], references: [id])
+}
+
+model Imagem_paciente {
+  id            String @unique
+  idPaciente    String @unique
+  url           String
+  paciente      Paciente? @relation(fields: [idPaciente], references: [id])
+}
+
+model Imagem_medico {
+  id            String @unique
+  idMedico      String @unique
+  url           String
+  medico        Medico   @relation(fields: [idMedico], references: [id])
 }

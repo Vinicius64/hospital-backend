@@ -5,6 +5,8 @@ const pacienteRoutes = require('./rotas/pacientes/pacientes');
 const consultaRoutes = require('./rotas/consultas/consultas');
 const exameRoutes = require('./rotas/exames/exames');
 const logRoutes = require('./rotas/logs/log');
+const enderecoRoutes = require('./rotas/endereco/endereco');
+const imagemRoutes = require('./rotas/imagens/imagens');
 const errorHandler = require('./middleware/errorHandler');
 
 const { authenticate } = require('./authentication');
@@ -19,6 +21,8 @@ app.use(pacienteRoutes);
 app.use(consultaRoutes);
 app.use(exameRoutes);
 app.use(logRoutes);
+app.use(enderecoRoutes);
+app.use(imagemRoutes);
 
 
 app.use(errorHandler);
